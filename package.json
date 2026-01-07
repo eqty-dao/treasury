@@ -1,0 +1,11 @@
+{
+  "name": "eqty-treasury-page",
+  "private": true,
+  "type": "module",
+  "scripts": {
+    "fetch:onchain": "node scripts/fetch_onchain.js"
+  },
+  "dependencies": {
+    "ethers": "^6.0.0"
+  }
+}
