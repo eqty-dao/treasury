@@ -1,0 +1,51 @@
+name: Refresh on-chain snapshots
+
+on:
+  workflow_dispatch:
+  schedule:
+    # Every hour at minute 17 (UTC). Avoids top-of-hour congestion/delays.
+    - cron: "17 * * * *"
+
+permissions:
+  contents: write
+
+jobs:
+  refresh:
+    runs-on: ubuntu-latest
+
+    steps:
+      - name: Checkout
+        uses: actions/checkout@v4
+        with:
+          fetch-depth: 0
+
+      - name: Setup Node
+        uses: actions/setup-node@v4
+        with:
+          node-version: "20"
+          cache: "npm"
+
+      - name: Install deps
+        run: npm ci
+
+      - name: Generate JSON snapshots
+        env:
+          ETH_RPC_URL: ${{ secrets.ETH_RPC_URL }}
+          BASE_RPC_URL: ${{ secrets.BASE_RPC_URL }}
+          ETHERSCAN_API_KEY: ${{ secrets.ETHERSCAN_API_KEY }}
+        run: npm run fetch:onchain
+
+      - name: Commit & push if changed
+        run: |
+          git config user.name "eqty-treasury-bot"
+          git config user.email "actions@users.noreply.github.com"
+
+          git add data/
+
+          if git diff --cached --quiet; then
+            echo "No changes to commit."
+            exit 0
+          fi
+
+          git commit -m "chore(data): refresh on-chain snapshots"
+          git push
