@@ -1,0 +1,71 @@
+{
+  "chain": "base",
+  "chainId": 8453,
+  "treasuryAddress": "0x2Bc456799F3Cf071B10CE7216269471e0A40381a",
+  "generatedAt": "2026-01-07T14:59:16.990Z",
+  "native": {
+    "symbol": "ETH",
+    "decimals": 18,
+    "balanceWei": "765000000000000000",
+    "balanceFormatted": "0.765",
+    "explorerAddressUrl": "https://basescan.org/address/0x2Bc456799F3Cf071B10CE7216269471e0A40381a"
+  },
+  "tokens": {
+    "EQTY": {
+      "symbol": "EQTY",
+      "contract": "0xc71f37d9bf4c5d1e7fe4bccb97e6f30b11b37d29",
+      "decimals": 18,
+      "balanceRaw": "18420772000000000000000000",
+      "balanceFormatted": "18420772.0",
+      "explorerTokenUrl": "https://basescan.org/token/0xc71f37d9bf4c5d1e7fe4bccb97e6f30b11b37d29"
+    }
+  },
+  "recentTransfers": {
+    "EQTY": [
+      {
+        "hash": "0xdac801e93f2544daab57841f4a5c330678a8a83e8c8c3bff46659b2c5f9138df",
+        "timestamp": "2026-01-06T17:58:03.000Z",
+        "from": "0xc4e597f76e60a0e6a2aa4368306ce98a47a6812e",
+        "to": "0x2bc456799f3cf071b10ce7216269471e0a40381a",
+        "direction": "in",
+        "amountRaw": "18410772000000000000000000",
+        "amountFormatted": "18410772.0",
+        "explorerTxUrl": "https://basescan.org/tx/0xdac801e93f2544daab57841f4a5c330678a8a83e8c8c3bff46659b2c5f9138df"
+      },
+      {
+        "hash": "0xd5b3171a5d4f392031a967bc39a914c63708c359b21463a1a79d8e34ef677130",
+        "timestamp": "2026-01-06T17:53:05.000Z",
+        "from": "0xc4e597f76e60a0e6a2aa4368306ce98a47a6812e",
+        "to": "0x2bc456799f3cf071b10ce7216269471e0a40381a",
+        "direction": "in",
+        "amountRaw": "1000000000000000000000",
+        "amountFormatted": "1000.0",
+        "explorerTxUrl": "https://basescan.org/tx/0xd5b3171a5d4f392031a967bc39a914c63708c359b21463a1a79d8e34ef677130"
+      },
+      {
+        "hash": "0x7f3df472e63cac76fc90f9f87078dea9948c508f3c9e019b08c9d5dcaa88aefb",
+        "timestamp": "2026-01-06T17:47:01.000Z",
+        "from": "0x2bc456799f3cf071b10ce7216269471e0a40381a",
+        "to": "0xc4e597f76e60a0e6a2aa4368306ce98a47a6812e",
+        "direction": "out",
+        "amountRaw": "1000000000000000000000",
+        "amountFormatted": "1000.0",
+        "explorerTxUrl": "https://basescan.org/tx/0x7f3df472e63cac76fc90f9f87078dea9948c508f3c9e019b08c9d5dcaa88aefb"
+      },
+      {
+        "hash": "0x6a8d311397b2a766e25e54197c3ed8477a4ae267b5938ef37fb41465c89f5b45",
+        "timestamp": "2026-01-02T13:59:57.000Z",
+        "from": "0xc4e597f76e60a0e6a2aa4368306ce98a47a6812e",
+        "to": "0x2bc456799f3cf071b10ce7216269471e0a40381a",
+        "direction": "in",
+        "amountRaw": "10000000000000000000000",
+        "amountFormatted": "10000.0",
+        "explorerTxUrl": "https://basescan.org/tx/0x6a8d311397b2a766e25e54197c3ed8477a4ae267b5938ef37fb41465c89f5b45"
+      }
+    ]
+  },
+  "sources": {
+    "rpc": "BASE_RPC_URL",
+    "explorer": "https://basescan.org"
+  }
+}

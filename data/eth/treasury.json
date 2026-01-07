@@ -1,0 +1,51 @@
+{
+  "chain": "ethereum",
+  "chainId": 1,
+  "treasuryAddress": "0x2Bc456799F3Cf071B10CE7216269471e0A40381a",
+  "generatedAt": "2026-01-07T14:59:16.990Z",
+  "native": {
+    "symbol": "ETH",
+    "decimals": 18,
+    "balanceWei": "765000000000000000",
+    "balanceFormatted": "0.765",
+    "explorerAddressUrl": "https://etherscan.io/address/0x2Bc456799F3Cf071B10CE7216269471e0A40381a"
+  },
+  "tokens": {
+    "USDT": {
+      "symbol": "USDT",
+      "contract": "0xdAC17F958D2ee523a2206206994597C13D831ec7",
+      "decimals": 6,
+      "balanceRaw": "52890501917",
+      "balanceFormatted": "52890.501917",
+      "explorerTokenUrl": "https://etherscan.io/token/0xdAC17F958D2ee523a2206206994597C13D831ec7"
+    }
+  },
+  "recentTransfers": {
+    "USDT": [
+      {
+        "hash": "0xa77742befe9bec082462bf1e49f3df2b96bcb37373355094266fc76c8a37ca67",
+        "timestamp": "2026-01-06T18:08:35.000Z",
+        "from": "0xc4e597f76e60a0e6a2aa4368306ce98a47a6812e",
+        "to": "0x2bc456799f3cf071b10ce7216269471e0a40381a",
+        "direction": "in",
+        "amountRaw": "51890501917",
+        "amountFormatted": "51890.501917",
+        "explorerTxUrl": "https://etherscan.io/tx/0xa77742befe9bec082462bf1e49f3df2b96bcb37373355094266fc76c8a37ca67"
+      },
+      {
+        "hash": "0x9dadebfc2e9cf24ee5c6497e5c46513d60ab4cbca497f50f26bf57ac220010d1",
+        "timestamp": "2026-01-06T18:06:59.000Z",
+        "from": "0xc4e597f76e60a0e6a2aa4368306ce98a47a6812e",
+        "to": "0x2bc456799f3cf071b10ce7216269471e0a40381a",
+        "direction": "in",
+        "amountRaw": "1000000000",
+        "amountFormatted": "1000.0",
+        "explorerTxUrl": "https://etherscan.io/tx/0x9dadebfc2e9cf24ee5c6497e5c46513d60ab4cbca497f50f26bf57ac220010d1"
+      }
+    ]
+  },
+  "sources": {
+    "rpc": "ETH_RPC_URL",
+    "explorer": "https://etherscan.io"
+  }
+}
