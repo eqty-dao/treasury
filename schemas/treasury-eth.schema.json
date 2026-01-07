@@ -1,0 +1,93 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eqty.example/schemas/treasury-eth.schema.json",
+  "title": "EQTY Treasury Snapshot (Ethereum)",
+  "type": "object",
+  "required": ["chain", "chainId", "treasuryAddress", "generatedAt", "native", "tokens"],
+  "properties": {
+    "chain": { "type": "string", "const": "ethereum" },
+    "chainId": { "type": "integer", "const": 1 },
+    "treasuryAddress": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+
+    "native": { "$ref": "#/$defs/nativeAsset" },
+
+    "tokens": {
+      "type": "object",
+      "required": ["USDT"],
+      "properties": {
+        "USDT": { "$ref": "#/$defs/erc20Asset" }
+      },
+      "additionalProperties": false
+    },
+
+    "recentTransfers": {
+      "type": "object",
+      "required": ["USDT"],
+      "properties": {
+        "USDT": {
+          "type": "array",
+          "items": { "$ref": "#/$defs/erc20Transfer" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "sources": {
+      "type": "object",
+      "required": ["rpc", "explorer"],
+      "properties": {
+        "rpc": { "type": "string" },
+        "explorer": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+
+  "$defs": {
+    "nativeAsset": {
+      "type": "object",
+      "required": ["symbol", "decimals", "balanceWei", "balanceFormatted", "explorerAddressUrl"],
+      "properties": {
+        "symbol": { "type": "string", "const": "ETH" },
+        "decimals": { "type": "integer", "const": 18 },
+        "balanceWei": { "type": "string", "pattern": "^[0-9]+$" },
+        "balanceFormatted": { "type": "string" },
+        "explorerAddressUrl": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    },
+
+    "erc20Asset": {
+      "type": "object",
+      "required": ["symbol", "contract", "decimals", "balanceRaw", "balanceFormatted", "explorerTokenUrl"],
+      "properties": {
+        "symbol": { "type": "string" },
+        "contract": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+        "decimals": { "type": "integer", "minimum": 0, "maximum": 255 },
+        "balanceRaw": { "type": "string", "pattern": "^[0-9]+$" },
+        "balanceFormatted": { "type": "string" },
+        "explorerTokenUrl": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    },
+
+    "erc20Transfer": {
+      "type": "object",
+      "required": ["hash", "timestamp", "from", "to", "direction", "amountRaw", "amountFormatted", "explorerTxUrl"],
+      "properties": {
+        "hash": { "type": "string", "pattern": "^0x[a-fA-F0-9]{64}$" },
+        "timestamp": { "type": "string", "format": "date-time" },
+        "from": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+        "to": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+        "direction": { "type": "string", "enum": ["in", "out", "self", "other"] },
+        "amountRaw": { "type": "string", "pattern": "^[0-9]+$" },
+        "amountFormatted": { "type": "string" },
+        "explorerTxUrl": { "type": "string", "format": "uri" }
+      },
+      "additionalProperties": false
+    }
+  },
+
+  "additionalProperties": false
+}
