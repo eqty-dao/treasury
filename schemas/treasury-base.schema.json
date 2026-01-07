@@ -1,0 +1,49 @@
+{
+  "$schema": "https://json-schema.org/draft/2020-12/schema",
+  "$id": "https://eqty.example/schemas/treasury-base.schema.json",
+  "title": "EQTY Treasury Snapshot (Base)",
+  "type": "object",
+  "required": ["chain", "chainId", "treasuryAddress", "generatedAt", "native", "tokens"],
+  "properties": {
+    "chain": { "type": "string", "const": "base" },
+    "chainId": { "type": "integer", "const": 8453 },
+
+    "treasuryAddress": { "type": "string", "pattern": "^0x[a-fA-F0-9]{40}$" },
+    "generatedAt": { "type": "string", "format": "date-time" },
+
+    "native": { "$ref": "treasury-eth.schema.json#/$defs/nativeAsset" },
+
+    "tokens": {
+      "type": "object",
+      "required": ["EQTY"],
+      "properties": {
+        "EQTY": { "$ref": "treasury-eth.schema.json#/$defs/erc20Asset" }
+      },
+      "additionalProperties": false
+    },
+
+    "recentTransfers": {
+      "type": "object",
+      "required": ["EQTY"],
+      "properties": {
+        "EQTY": {
+          "type": "array",
+          "items": { "$ref": "treasury-eth.schema.json#/$defs/erc20Transfer" }
+        }
+      },
+      "additionalProperties": false
+    },
+
+    "sources": {
+      "type": "object",
+      "required": ["rpc", "explorer"],
+      "properties": {
+        "rpc": { "type": "string" },
+        "explorer": { "type": "string" }
+      },
+      "additionalProperties": false
+    }
+  },
+
+  "additionalProperties": false
+}
