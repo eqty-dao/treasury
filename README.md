@@ -3,7 +3,7 @@
 ## Local run (Alchemy)
 
 1) Install dependencies:
-```bash
+npm install
 npm ci
 
 2) Create .env (never commit it):
