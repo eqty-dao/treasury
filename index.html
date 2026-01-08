@@ -1,59 +1,141 @@
 <!doctype html>
 <html lang="en">
-<head>
-  <meta charset="utf-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1" />
-  <title>EQTY Treasury Transparency</title>
-  <style>
-    :root { color-scheme: light dark; }
-    body { font-family: system-ui, -apple-system, Segoe UI, Roboto, Ubuntu, Cantarell, "Helvetica Neue", Arial, sans-serif; margin: 24px; }
-    header { display: flex; gap: 16px; align-items: baseline; flex-wrap: wrap; }
-    h1 { font-size: 20px; margin: 0; }
-    .muted { opacity: 0.75; font-size: 13px; }
-    .grid { display: grid; grid-template-columns: 1fr; gap: 18px; margin-top: 18px; }
-    @media (min-width: 900px) { .grid { grid-template-columns: 1fr 1fr; } }
-    .card { border: 1px solid rgba(127,127,127,0.35); border-radius: 10px; padding: 14px; }
-    table { width: 100%; border-collapse: collapse; }
-    th, td { padding: 8px 10px; border-bottom: 1px solid rgba(127,127,127,0.25); text-align: left; vertical-align: top; }
-    th { font-size: 13px; opacity: 0.85; }
-    code { font-family: ui-monospace, SFMono-Regular, Menlo, Monaco, Consolas, "Liberation Mono", "Courier New", monospace; }
-    a { text-decoration: none; }
-    a:hover { text-decoration: underline; }
-    ul { margin: 8px 0 0 18px; padding: 0; }
-    li { margin: 6px 0; }
-    .pill { display: inline-block; padding: 2px 8px; border-radius: 999px; border: 1px solid rgba(127,127,127,0.35); font-size: 12px; opacity: 0.9; }
-    .error { color: #b00020; }
-  </style>
-</head>
-<body>
-  <header>
-    <h1>EQTY DAO Treasury Transparency</h1>
-    <span id="lastUpdated" class="muted"></span>
-  </header>
+  <head>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width,initial-scale=1" />
+    <title>EQTY DAO Treasury</title>
+    <style>
+      :root {
+        --bg: #0b0f17;
+        --panel: #111827;
+        --text: #e5e7eb;
+        --muted: #9ca3af;
+        --border: #1f2937;
+        --link: #93c5fd;
+        --error: #fca5a5;
+      }
+      body {
+        margin: 0;
+        padding: 32px 18px;
+        background: var(--bg);
+        color: var(--text);
+        font-family: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto, Helvetica, Arial;
+      }
+      a { color: var(--link); text-decoration: none; }
+      a:hover { text-decoration: underline; }
+      .container { max-width: 980px; margin: 0 auto; }
+      header {
+        display: flex;
+        justify-content: space-between;
+        align-items: baseline;
+        gap: 16px;
+        flex-wrap: wrap;
+        margin-bottom: 18px;
+      }
+      h1 { margin: 0; font-size: 22px; }
+      h2 { margin: 26px 0 10px; font-size: 18px; }
+      h3 { margin: 18px 0 8px; font-size: 15px; color: var(--text); }
+      .muted { color: var(--muted); }
+      .error { color: var(--error); }
+      .card {
+        background: var(--panel);
+        border: 1px solid var(--border);
+        border-radius: 10px;
+        padding: 14px 14px;
+        margin: 10px 0;
+      }
+      .pill {
+        display: inline-block;
+        padding: 2px 8px;
+        border-radius: 999px;
+        border: 1px solid var(--border);
+        background: #0b1220;
+        font-size: 12px;
+        color: var(--muted);
+      }
+      table {
+        width: 100%;
+        border-collapse: collapse;
+        margin-top: 8px;
+        font-size: 13px;
+      }
+      th, td {
+        border-bottom: 1px solid var(--border);
+        padding: 10px 8px;
+        vertical-align: top;
+        text-align: left;
+      }
+      th { color: var(--muted); font-weight: 600; }
+      ul { margin: 8px 0 0; padding-left: 18px; }
+      code { color: #c7d2fe; }
+      .grid2 {
+        display: grid;
+        grid-template-columns: 1fr 1fr;
+        gap: 12px;
+      }
+      @media (max-width: 860px) {
+        .grid2 { grid-template-columns: 1fr; }
+      }
+    </style>
+  </head>
 
-  <p class="muted">
-    Address: <code id="treasuryAddr"></code>
-  </p>
+  <body>
+    <div class="container">
+      <header>
+        <div>
+          <h1>EQTY DAO Treasury</h1>
+          <div class="muted">Treasury address: <code id="treasuryAddr">—</code></div>
+        </div>
+        <div class="muted" id="lastUpdated"></div>
+      </header>
 
-  <div class="card">
-    <h2 style="margin: 0 0 10px 0; font-size: 16px;">Balances</h2>
-    <div id="balances"></div>
-  </div>
+      <div id="status" class="muted"></div>
 
-  <div class="grid">
-    <div class="card">
-      <h2 style="margin: 0 0 10px 0; font-size: 16px;">Recent USDT transfers (Ethereum)</h2>
-      <div id="usdtTransfers"></div>
+      <section class="card">
+        <h2>On-chain balances</h2>
+        <div id="balances"></div>
+      </section>
+
+      <section class="card">
+        <h2>Recent transfers</h2>
+        <div class="grid2">
+          <div>
+            <h3>Ethereum — USDT</h3>
+            <div id="usdtTransfers"></div>
+          </div>
+          <div>
+            <h3>Base — EQTY</h3>
+            <div id="eqtyTransfers"></div>
+          </div>
+        </div>
+      </section>
+
+      <section class="card">
+        <h2>Moneybird (off-chain)</h2>
+        <div class="muted">
+          Aggregated monthly totals only (no counterparty / transaction-level personal data).
+        </div>
+
+        <div class="muted" id="moneybirdMeta"></div>
+
+        <div class="grid2">
+          <div>
+            <h3>Bank account</h3>
+            <div id="mbBank"></div>
+          </div>
+          <div>
+            <h3>PSP account</h3>
+            <div id="mbPsp"></div>
+          </div>
+        </div>
+      </section>
+
+      <div class="muted" style="margin-top: 14px;">
+        Data is regenerated by GitHub Actions on a schedule.
+      </div>
     </div>
 
-    <div class="card">
-      <h2 style="margin: 0 0 10px 0; font-size: 16px;">Recent EQTY transfers (Base)</h2>
-      <div id="eqtyTransfers"></div>
-    </div>
-  </div>
-
-  <p id="status" class="muted"></p>
-
-  <script src="./app.js" type="module"></script>
-</body>
+    <script src="./app.js"></script>
+  </body>
 </html>
+
