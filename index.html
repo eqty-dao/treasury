@@ -82,6 +82,49 @@
       font-size: 12px;
       line-height: 1.35;
       }
+      /* Aligned “Recent transfers” rows */
+.tx-list {
+  list-style: none;
+  padding-left: 0;
+  margin: 8px 0 0;
+  font-size: 12px; /* smaller */
+  line-height: 1.35;
+}
+
+.tx-item { margin: 6px 0; }
+
+.tx-row {
+  display: grid;
+  grid-template-columns: 130px 60px 140px 1fr;
+  gap: 10px;
+  align-items: baseline;
+}
+
+.tx-dir {
+  color: var(--muted);
+  white-space: nowrap;
+}
+
+.tx-amt {
+  text-align: right;
+  font-variant-numeric: tabular-nums;
+  white-space: nowrap;
+}
+
+.tx-time {
+  color: var(--muted);
+  font-variant-numeric: tabular-nums;
+}
+
+@media (max-width: 700px) {
+  .tx-row {
+    grid-template-columns: 130px 60px 1fr;
+  }
+  .tx-time {
+    grid-column: 1 / -1; /* timestamp moves to next line */
+  }
+}
+
     </style>
   </head>
 

@@ -91,16 +91,26 @@ function renderBalances({ eth, base }) {
 function renderTransfers(transfers, emptyLabel) {
   if (!transfers || transfers.length === 0) return el("div", { class: "muted" }, [emptyLabel]);
 
-  const ul = el("ul");
+  const ul = el("ul", { class: "tx-list" });
+
   for (const t of transfers.slice(0, 15)) {
     const dir = t.direction === "in" ? "IN" : t.direction === "out" ? "OUT" : String(t.direction || "").toUpperCase();
-    const line = `${dir} ${fmtNumberString(t.amountFormatted)} — ${new Date(t.timestamp).toLocaleString()}`;
+    const amount = fmtNumberString(t.amountFormatted);
+    const ts = new Date(t.timestamp).toLocaleString();
 
-    const li = el("li");
-    li.appendChild(link(t.explorerTxUrl, t.hash.slice(0, 10) + "…" + t.hash.slice(-8)));
-    li.appendChild(document.createTextNode(" — " + line));
+    const li = el("li", { class: "tx-item" });
+
+    const row = el("div", { class: "tx-row" }, [
+      link(t.explorerTxUrl, t.hash.slice(0, 10) + "…" + t.hash.slice(-8)),
+      el("span", { class: "tx-dir" }, [dir + " |"]),
+      el("span", { class: "tx-amt" }, [amount]),
+      el("span", { class: "tx-time" }, [ts]),
+    ]);
+
+    li.appendChild(row);
     ul.appendChild(li);
   }
+
   return ul;
 }
 
