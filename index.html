@@ -111,6 +111,42 @@
 }
 
 }
+/* Moneybird monthly: card-based layout (mobile-friendly) */
+.monthly-container {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-top: 10px;
+}
+
+.monthly-card {
+  border: 1px solid var(--border);
+  border-radius: 8px;
+  padding: 10px 12px;
+  background: rgba(0, 0, 0, 0.15);
+}
+
+.monthly-header {
+  font-weight: 600;
+  margin-bottom: 8px;
+  font-size: 14px;
+}
+
+.monthly-row {
+  display: flex;
+  justify-content: space-between;
+  padding: 4px 0;
+  font-size: 13px;
+}
+
+.monthly-label {
+  color: var(--muted);
+}
+
+.monthly-value {
+  font-variant-numeric: tabular-nums;
+  text-align: right;
+}
 
     </style>
   </head>

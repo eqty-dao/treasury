@@ -120,38 +120,40 @@ function renderTransfers(transfers, emptyLabel) {
 function renderMoneybirdMonthlyTable(months) {
   if (!months || months.length === 0) return el("div", { class: "muted" }, ["No monthly data."]);
 
-  const table = el("table");
-  table.appendChild(
-    el("thead", {}, [
-      el("tr", {}, [
-        el("th", {}, ["Month"]),
-        el("th", {}, ["Opening"]),
-        el("th", {}, ["Closing"]),
-        el("th", {}, ["Received"]),
-        el("th", {}, ["Paid"]),
-        el("th", {}, ["Net"]),
-        el("th", {}, ["Tx count"]),
-      ]),
-    ])
-  );
+  const container = el("div", { class: "monthly-container" });
 
-  const tbody = el("tbody");
   for (const m of months) {
-    tbody.appendChild(
-      el("tr", {}, [
-        el("td", {}, [m.month]),
-        el("td", {}, [fmtNumberString(m.openingBalance)]),
-        el("td", {}, [fmtNumberString(m.closingBalance)]),
-        el("td", {}, [fmtNumberString(m.cashReceivedTotal)]),
-        el("td", {}, [fmtNumberString(m.cashPaidTotal)]),
-        el("td", {}, [fmtNumberString(m.netCashFlow)]),
-        el("td", {}, [String(m.mutationCount ?? "")]),
-      ])
-    );
+    const card = el("div", { class: "monthly-card" }, [
+      el("div", { class: "monthly-header" }, [m.month]),
+      el("div", { class: "monthly-row" }, [
+        el("span", { class: "monthly-label" }, ["Opening:"]),
+        el("span", { class: "monthly-value" }, [fmtNumberString(m.openingBalance)]),
+      ]),
+      el("div", { class: "monthly-row" }, [
+        el("span", { class: "monthly-label" }, ["Closing:"]),
+        el("span", { class: "monthly-value" }, [fmtNumberString(m.closingBalance)]),
+      ]),
+      el("div", { class: "monthly-row" }, [
+        el("span", { class: "monthly-label" }, ["Received:"]),
+        el("span", { class: "monthly-value" }, [fmtNumberString(m.cashReceivedTotal)]),
+      ]),
+      el("div", { class: "monthly-row" }, [
+        el("span", { class: "monthly-label" }, ["Paid:"]),
+        el("span", { class: "monthly-value" }, [fmtNumberString(m.cashPaidTotal)]),
+      ]),
+      el("div", { class: "monthly-row" }, [
+        el("span", { class: "monthly-label" }, ["Net:"]),
+        el("span", { class: "monthly-value" }, [fmtNumberString(m.netCashFlow)]),
+      ]),
+      el("div", { class: "monthly-row" }, [
+        el("span", { class: "monthly-label" }, ["Transactions:"]),
+        el("span", { class: "monthly-value" }, [String(m.mutationCount ?? "")]),
+      ]),
+    ]);
+    container.appendChild(card);
   }
 
-  table.appendChild(tbody);
-  return table;
+  return container;
 }
 
 function renderMoneybirdAccountCard({ account, monthly }) {
