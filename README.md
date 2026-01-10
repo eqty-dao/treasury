@@ -76,6 +76,7 @@ Outputs:
 ├── treasury-base.schema.json
 └── .github/workflows/refresh.yml
 
+```
 The on-chain JSON formats are described by JSON Schema:
 
 treasury-eth.schema.json (Ethereum snapshot)
