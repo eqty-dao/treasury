@@ -251,7 +251,6 @@ function renderSpendCard({ title, totals, byId, currency }) {
     );
   }
 
-  // Total row (same style)
   card.appendChild(
     el("div", { class: "monthly-row" }, [
       el("span", { class: "monthly-label" }, ["Total:"]),
@@ -268,11 +267,9 @@ function renderSpendByCategory({ bankMonthly, ledgerAccounts, currency }) {
 
   const byId = buildLedgerMap(ledgerAccounts || []);
 
-  // Latest month only
   const latest = months[months.length - 1];
   const latestTotals = aggregateSpentByGroup(latest?.cashPaidByLedgerAccount || {}, byId);
 
-  // YTD totals
   const ytdTotals = new Map();
   for (const m of months) {
     const t = aggregateSpentByGroup(m?.cashPaidByLedgerAccount || {}, byId);
@@ -302,27 +299,6 @@ function renderSpendByCategory({ bankMonthly, ledgerAccounts, currency }) {
   );
 
   return container;
-}
-
-  const wrap = el("div");
-  wrap.appendChild(
-    renderSpendTable({
-      title: `Latest month (${latest.month})`,
-      totals: latestTotals,
-      byId,
-      currency,
-    })
-  );
-  wrap.appendChild(el("div", { style: "height: 10px;" }, []));
-  wrap.appendChild(
-    renderSpendTable({
-      title: "Year-to-date",
-      totals: ytdTotals,
-      byId,
-      currency,
-    })
-  );
-  return wrap;
 }
 
 /* ---------- main ---------- */
@@ -389,7 +365,6 @@ async function main() {
 
         mbBankTarget.appendChild(renderMoneybirdAccountCard({ account: bankAccount, monthly: bankMonthly }));
 
-        // Spent by category (optional UI slot)
         if (mbSpendTarget) {
           try {
             const ledgerMeta = await getJson("./data/moneybird/ledger_accounts.json");
