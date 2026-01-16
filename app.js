@@ -3,15 +3,16 @@
 function el(tag, attrs = {}, children = []) {
   const node = document.createElement(tag);
 
-  for (const [k, v] of Object.entries(attrs)) {
+  for (const [k, v] of Object.entries(attrs || {})) {
     if (k === "class") node.className = v;
     else if (k === "html") node.innerHTML = v;
     else node.setAttribute(k, v);
   }
 
-  for (const c of children) {
+  for (const c of children || []) {
     node.appendChild(typeof c === "string" ? document.createTextNode(c) : c);
   }
+
   return node;
 }
 
@@ -26,7 +27,7 @@ function link(href, text) {
 }
 
 async function getJson(relPath) {
-  // Using relative paths keeps this working on GitHub Pages project sites too. [web:95][web:549]
+  // Relative paths keep this working on GitHub Pages project sites too.
   const res = await fetch(relPath);
   if (!res.ok) throw new Error(`Fetch failed ${res.status} for ${relPath}`);
   return res.json();
@@ -99,19 +100,17 @@ function renderTransfers(transfers, emptyLabel) {
       t.direction === "out" ? "OUT" :
       String(t.direction || "").toUpperCase();
 
-    const li = el("li", { class: "tx-item" });
-
-    li.appendChild(
-      el("div", { class: "tx-row" }, [
-        link(t.explorerTxUrl, t.hash.slice(0, 6) + "…" + t.hash.slice(-4)),
-        el("span", { class: "tx-dir" }, [dir]),
-        el("span", { class: "tx-sep" }, ["|"]),
-        el("span", { class: "tx-amt" }, [fmtNumberString(t.amountFormatted)]),
-        el("span", { class: "tx-time" }, [new Date(t.timestamp).toLocaleString()]),
+    ul.appendChild(
+      el("li", { class: "tx-item" }, [
+        el("div", { class: "tx-row" }, [
+          link(t.explorerTxUrl, t.hash.slice(0, 6) + "…" + t.hash.slice(-4)),
+          el("span", { class: "tx-dir" }, [dir]),
+          el("span", { class: "tx-sep" }, ["|"]),
+          el("span", { class: "tx-amt" }, [fmtNumberString(t.amountFormatted)]),
+          el("span", { class: "tx-time" }, [new Date(t.timestamp).toLocaleString()]),
+        ]),
       ])
     );
-
-    ul.appendChild(li);
   }
 
   return ul;
@@ -123,34 +122,35 @@ function renderMoneybirdMonthlyTable(months) {
   const container = el("div", { class: "monthly-container" });
 
   for (const m of months) {
-    const card = el("div", { class: "monthly-card" }, [
-      el("div", { class: "monthly-header" }, [m.month]),
-      el("div", { class: "monthly-row" }, [
-        el("span", { class: "monthly-label" }, ["Opening:"]),
-        el("span", { class: "monthly-value" }, [fmtNumberString(m.openingBalance)]),
-      ]),
-      el("div", { class: "monthly-row" }, [
-        el("span", { class: "monthly-label" }, ["Closing:"]),
-        el("span", { class: "monthly-value" }, [fmtNumberString(m.closingBalance)]),
-      ]),
-      el("div", { class: "monthly-row" }, [
-        el("span", { class: "monthly-label" }, ["Received:"]),
-        el("span", { class: "monthly-value" }, [fmtNumberString(m.cashReceivedTotal)]),
-      ]),
-      el("div", { class: "monthly-row" }, [
-        el("span", { class: "monthly-label" }, ["Paid:"]),
-        el("span", { class: "monthly-value" }, [fmtNumberString(m.cashPaidTotal)]),
-      ]),
-      el("div", { class: "monthly-row" }, [
-        el("span", { class: "monthly-label" }, ["Net:"]),
-        el("span", { class: "monthly-value" }, [fmtNumberString(m.netCashFlow)]),
-      ]),
-      el("div", { class: "monthly-row" }, [
-        el("span", { class: "monthly-label" }, ["Transactions:"]),
-        el("span", { class: "monthly-value" }, [String(m.mutationCount ?? "")]),
-      ]),
-    ]);
-    container.appendChild(card);
+    container.appendChild(
+      el("div", { class: "monthly-card" }, [
+        el("div", { class: "monthly-header" }, [m.month]),
+        el("div", { class: "monthly-row" }, [
+          el("span", { class: "monthly-label" }, ["Opening:"]),
+          el("span", { class: "monthly-value" }, [fmtNumberString(m.openingBalance)]),
+        ]),
+        el("div", { class: "monthly-row" }, [
+          el("span", { class: "monthly-label" }, ["Closing:"]),
+          el("span", { class: "monthly-value" }, [fmtNumberString(m.closingBalance)]),
+        ]),
+        el("div", { class: "monthly-row" }, [
+          el("span", { class: "monthly-label" }, ["Received:"]),
+          el("span", { class: "monthly-value" }, [fmtNumberString(m.cashReceivedTotal)]),
+        ]),
+        el("div", { class: "monthly-row" }, [
+          el("span", { class: "monthly-label" }, ["Paid:"]),
+          el("span", { class: "monthly-value" }, [fmtNumberString(m.cashPaidTotal)]),
+        ]),
+        el("div", { class: "monthly-row" }, [
+          el("span", { class: "monthly-label" }, ["Net:"]),
+          el("span", { class: "monthly-value" }, [fmtNumberString(m.netCashFlow)]),
+        ]),
+        el("div", { class: "monthly-row" }, [
+          el("span", { class: "monthly-label" }, ["Transactions:"]),
+          el("span", { class: "monthly-value" }, [String(m.mutationCount ?? "")]),
+        ]),
+      ])
+    );
   }
 
   return container;
@@ -162,8 +162,8 @@ function renderMoneybirdAccountCard({ account, monthly }) {
   const name = account?.financialAccount?.name || "(unnamed)";
   const type = account?.financialAccount?.type || "Account";
   const currency = account?.financialAccount?.currency || "";
-
   const current = account?.current;
+
   const currentLine = current
     ? `Current (from ${current.month}): ${fmtNumberString(current.closingBalance)} ${currency}`
     : "Current balance unavailable.";
@@ -179,68 +179,230 @@ function renderMoneybirdAccountCard({ account, monthly }) {
   return wrap;
 }
 
+/* ---------- Moneybird: spent by category ---------- */
+
+function buildLedgerMap(ledgerAccounts) {
+  const byId = new Map();
+  for (const a of ledgerAccounts || []) {
+    byId.set(String(a.id), {
+      id: String(a.id),
+      name: a.name || null,
+      parentId: a.parentId || null,
+    });
+  }
+  return byId;
+}
+
+function topGroupId(byId, id) {
+  let cur = String(id);
+  const seen = new Set();
+
+  while (true) {
+    const a = byId.get(cur);
+    if (!a || !a.parentId) return cur;
+
+    if (seen.has(cur)) return cur; // safety against cycles
+    seen.add(cur);
+
+    cur = String(a.parentId);
+  }
+}
+
+function aggregateSpentByGroup(paidMap, byId) {
+  const totals = new Map(); // groupId -> number
+
+  for (const [ledgerId, amountStr] of Object.entries(paidMap || {})) {
+    const groupId = topGroupId(byId, ledgerId);
+    const n = Number(amountStr || 0);
+    const spent = Math.abs(n); // display as positive “spent”
+    totals.set(groupId, (totals.get(groupId) || 0) + spent);
+  }
+
+  return totals;
+}
+
+function renderSpendTable({ title, totals, byId, currency }) {
+  const rows = [...totals.entries()]
+    .map(([groupId, total]) => ({
+      groupId,
+      name: byId.get(groupId)?.name || `Ledger ${groupId}`,
+      total,
+    }))
+    .sort((a, b) => b.total - a.total);
+
+  const wrap = el("div");
+  wrap.appendChild(el("div", { class: "muted", style: "margin: 6px 0 8px;" }, [title]));
+
+  if (rows.length === 0) {
+    wrap.appendChild(el("div", { class: "muted" }, ["No category data."]));
+    return wrap;
+  }
+
+  const table = el("table");
+  table.appendChild(el("thead", {}, [
+    el("tr", {}, [el("th", {}, ["Category"]), el("th", {}, ["Spent"])])
+  ]));
+
+  const tbody = el("tbody");
+  for (const r of rows.slice(0, 12)) {
+    tbody.appendChild(
+      el("tr", {}, [
+        el("td", {}, [r.name]),
+        el("td", {}, [`${fmtNumberString(String(r.total))} ${currency || ""}`]),
+      ])
+    );
+  }
+  table.appendChild(tbody);
+  wrap.appendChild(table);
+
+  const grandTotal = rows.reduce((acc, x) => acc + x.total, 0);
+  wrap.appendChild(
+    el("div", { class: "muted", style: "margin-top: 8px;" }, [
+      `Total: ${fmtNumberString(String(grandTotal))} ${currency || ""}`,
+    ])
+  );
+
+  return wrap;
+}
+
+function renderSpendByCategory({ bankMonthly, ledgerAccounts, currency }) {
+  const months = bankMonthly?.months || [];
+  if (months.length === 0) return el("div", { class: "muted" }, ["No monthly data."]);
+
+  const byId = buildLedgerMap(ledgerAccounts || []);
+
+  // Latest month only
+  const latest = months[months.length - 1];
+  const latestTotals = aggregateSpentByGroup(latest?.cashPaidByLedgerAccount || {}, byId);
+
+  // YTD totals
+  const ytdTotals = new Map();
+  for (const m of months) {
+    const t = aggregateSpentByGroup(m?.cashPaidByLedgerAccount || {}, byId);
+    for (const [groupId, val] of t.entries()) {
+      ytdTotals.set(groupId, (ytdTotals.get(groupId) || 0) + val);
+    }
+  }
+
+  const wrap = el("div");
+  wrap.appendChild(
+    renderSpendTable({
+      title: `Latest month (${latest.month})`,
+      totals: latestTotals,
+      byId,
+      currency,
+    })
+  );
+  wrap.appendChild(el("div", { style: "height: 10px;" }, []));
+  wrap.appendChild(
+    renderSpendTable({
+      title: "Year-to-date",
+      totals: ytdTotals,
+      byId,
+      currency,
+    })
+  );
+  return wrap;
+}
+
+/* ---------- main ---------- */
+
 async function main() {
   const status = document.getElementById("status");
-  status.textContent = "Loading…";
+  if (status) status.textContent = "Loading…";
 
   try {
-    // Root publishing => JSON paths are ./data/... [file:558]
     const [meta, eth, base] = await Promise.all([
       getJson("./data/meta.json"),
       getJson("./data/eth/treasury.json"),
       getJson("./data/base/treasury.json"),
     ]);
 
-    document.getElementById("treasuryAddr").textContent =
-      meta.address || eth.treasuryAddress || base.treasuryAddress || "—";
+    const addrEl = document.getElementById("treasuryAddr");
+    if (addrEl) addrEl.textContent = meta.address || eth.treasuryAddress || base.treasuryAddress || "—";
 
     const lastUpdated = meta.generatedAt || eth.generatedAt || base.generatedAt;
-    document.getElementById("lastUpdated").textContent =
-      lastUpdated ? `Last updated: ${new Date(lastUpdated).toLocaleString()}` : "";
+    const updatedEl = document.getElementById("lastUpdated");
+    if (updatedEl) {
+      updatedEl.textContent = lastUpdated ? `Last updated: ${new Date(lastUpdated).toLocaleString()}` : "";
+    }
 
     const balancesTarget = document.getElementById("balances");
-    balancesTarget.innerHTML = "";
-    balancesTarget.appendChild(renderBalances({ eth, base }));
+    if (balancesTarget) {
+      balancesTarget.innerHTML = "";
+      balancesTarget.appendChild(renderBalances({ eth, base }));
+    }
 
     const usdtTarget = document.getElementById("usdtTransfers");
-    usdtTarget.innerHTML = "";
-    usdtTarget.appendChild(renderTransfers(eth?.recentTransfers?.USDT || [], "No USDT transfers found."));
+    if (usdtTarget) {
+      usdtTarget.innerHTML = "";
+      usdtTarget.appendChild(renderTransfers(eth?.recentTransfers?.USDT || [], "No USDT transfers found."));
+    }
 
     const eqtyTarget = document.getElementById("eqtyTransfers");
-    eqtyTarget.innerHTML = "";
-    eqtyTarget.appendChild(renderTransfers(base?.recentTransfers?.EQTY || [], "No EQTY transfers found."));
+    if (eqtyTarget) {
+      eqtyTarget.innerHTML = "";
+      eqtyTarget.appendChild(renderTransfers(base?.recentTransfers?.EQTY || [], "No EQTY transfers found."));
+    }
 
     // Moneybird (optional)
     const mbMetaTarget = document.getElementById("moneybirdMeta");
     const mbBankTarget = document.getElementById("mbBank");
+    const mbSpendTarget = document.getElementById("mbSpendByCategory");
 
-    mbBankTarget.innerHTML = "";
+    if (mbBankTarget) mbBankTarget.innerHTML = "";
+    if (mbSpendTarget) mbSpendTarget.innerHTML = "";
 
-    try {
-      const mbMeta = await getJson("./data/moneybird/meta.json");
-      const year = mbMeta.year || String(new Date().getFullYear());
+    if (mbMetaTarget && mbBankTarget) {
+      try {
+        const mbMeta = await getJson("./data/moneybird/meta.json");
+        const year = mbMeta.year || String(new Date().getFullYear());
 
-      mbMetaTarget.textContent = mbMeta.generatedAt
-        ? `Moneybird updated: ${new Date(mbMeta.generatedAt).toLocaleString()} (year ${year})`
-        : `Moneybird year ${year}`;
+        mbMetaTarget.textContent = mbMeta.generatedAt
+          ? `Moneybird updated: ${new Date(mbMeta.generatedAt).toLocaleString()} (year ${year})`
+          : `Moneybird year ${year}`;
 
-      const [bankAccount, bankMonthly] = await Promise.all([
-        getJson("./data/moneybird/bank/account.json"),
-        getJson(`./data/moneybird/bank/monthly-${year}.json`),
-      ]);
+        const [bankAccount, bankMonthly] = await Promise.all([
+          getJson("./data/moneybird/bank/account.json"),
+          getJson(`./data/moneybird/bank/monthly-${year}.json`),
+        ]);
 
-      mbBankTarget.appendChild(renderMoneybirdAccountCard({ account: bankAccount, monthly: bankMonthly }));
-    } catch (e) {
-      mbMetaTarget.textContent = "Moneybird data not available yet.";
-      mbMetaTarget.className = "muted";
-      mbBankTarget.appendChild(el("div", { class: "muted" }, [`Moneybird load error: ${e.message}`]));
+        mbBankTarget.appendChild(renderMoneybirdAccountCard({ account: bankAccount, monthly: bankMonthly }));
+
+        // Spent by category (optional UI slot)
+        if (mbSpendTarget) {
+          try {
+            const ledgerMeta = await getJson("./data/moneybird/ledger_accounts.json");
+            const currency = bankAccount?.financialAccount?.currency || "";
+
+            mbSpendTarget.appendChild(
+              renderSpendByCategory({
+                bankMonthly,
+                ledgerAccounts: ledgerMeta?.ledgerAccounts || [],
+                currency,
+              })
+            );
+          } catch (e) {
+            mbSpendTarget.appendChild(el("div", { class: "muted" }, [`Spend-by-category error: ${e.message}`]));
+          }
+        }
+      } catch (e) {
+        mbMetaTarget.textContent = "Moneybird data not available yet.";
+        mbMetaTarget.className = "muted";
+        mbBankTarget.appendChild(el("div", { class: "muted" }, [`Moneybird load error: ${e.message}`]));
+        if (mbSpendTarget) mbSpendTarget.appendChild(el("div", { class: "muted" }, ["—"]));
+      }
     }
 
-    status.textContent = "";
-    status.className = "muted";
+    if (status) {
+      status.textContent = "";
+      status.className = "muted";
+    }
   } catch (e) {
-    status.className = "muted error";
-    status.textContent = `Error: ${e.message}`;
+    if (status) {
+      status.className = "muted error";
+      status.textContent = `Error: ${e.message}`;
+    }
   }
 }
 

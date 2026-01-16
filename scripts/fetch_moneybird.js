@@ -16,6 +16,11 @@ async function writeJson(filePath, obj) {
   await fs.writeFile(filePath, JSON.stringify(obj, null, 2) + "\n", "utf8");
 }
 
+async function getLedgerAccounts({ token, administrationId }) {
+  const url = `https://moneybird.com/api/v2/${administrationId}/ledger_accounts.json`;
+  return moneybirdRequest({ token, method: "GET", url });
+}
+
 function pad2(n) {
   return String(n).padStart(2, "0");
 }
@@ -199,6 +204,22 @@ async function main() {
     token: MONEYBIRD_API_TOKEN,
     administrationId: MONEYBIRD_ADMINISTRATION_ID,
   });
+
+const ledgerAccounts = await getLedgerAccounts({
+  token: MONEYBIRD_API_TOKEN,
+  administrationId: MONEYBIRD_ADMINISTRATION_ID,
+});
+
+await writeJson("data/moneybird/ledger_accounts.json", {
+  generatedAt: new Date().toISOString(),
+  administrationId: String(MONEYBIRD_ADMINISTRATION_ID),
+  ledgerAccounts: (ledgerAccounts || []).map((a) => ({
+    id: String(a.id),
+    name: a.name || null,
+    parentId: a.parent_id ? String(a.parent_id) : null,
+    accountType: a.account_type || null,
+  })),
+});
 
   await exportAccountMonthly({
     token: MONEYBIRD_API_TOKEN,
