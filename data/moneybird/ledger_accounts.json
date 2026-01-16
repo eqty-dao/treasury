@@ -1,0 +1,216 @@
+{
+  "generatedAt": "2026-01-16T13:22:43.569Z",
+  "administrationId": "474057273126159366",
+  "ledgerAccounts": [
+    {
+      "id": "475328521452913907",
+      "name": "Afschrijving sinds aanschaf IT",
+      "parentId": "475328521312404710",
+      "accountType": "non_current_assets"
+    },
+    {
+      "id": "475328521396290798",
+      "name": "Afschrijvingskosten",
+      "parentId": null,
+      "accountType": "expenses"
+    },
+    {
+      "id": "475328521527362807",
+      "name": "Afschrijvingskosten IT",
+      "parentId": "475328521396290798",
+      "accountType": "expenses"
+    },
+    {
+      "id": "474057273347408985",
+      "name": "Algemene kosten",
+      "parentId": null,
+      "accountType": "expenses"
+    },
+    {
+      "id": "474057273376769134",
+      "name": "Betaalde en/of ontvangen btw",
+      "parentId": "474057273347408988",
+      "accountType": "current_liabilities"
+    },
+    {
+      "id": "474235471873967985",
+      "name": "Betalingen onderweg NL73ADYB1000054185",
+      "parentId": "474057273346360405",
+      "accountType": "current_assets"
+    },
+    {
+      "id": "474166156441159171",
+      "name": "Betalingen onderweg Online Betaalmethoden rekening",
+      "parentId": "474057273346360405",
+      "accountType": "current_assets"
+    },
+    {
+      "id": "474057273347408988",
+      "name": "Btw",
+      "parentId": null,
+      "accountType": "current_liabilities"
+    },
+    {
+      "id": "474057273345311827",
+      "name": "Crediteuren",
+      "parentId": null,
+      "accountType": "current_liabilities"
+    },
+    {
+      "id": "474057273346360404",
+      "name": "Debiteuren",
+      "parentId": null,
+      "accountType": "current_assets"
+    },
+    {
+      "id": "474057273347408983",
+      "name": "Financiële rekeningen",
+      "parentId": null,
+      "accountType": "current_assets"
+    },
+    {
+      "id": "474057273347408991",
+      "name": "Huisvestingskosten",
+      "parentId": null,
+      "accountType": "expenses"
+    },
+    {
+      "id": "474057273346360405",
+      "name": "Hulprekeningen",
+      "parentId": null,
+      "accountType": "current_assets"
+    },
+    {
+      "id": "475328521312404710",
+      "name": "IT",
+      "parentId": null,
+      "accountType": "non_current_assets"
+    },
+    {
+      "id": "474057273347408982",
+      "name": "Koersverschillen",
+      "parentId": null,
+      "accountType": "other_income_expenses"
+    },
+    {
+      "id": "474057273372574819",
+      "name": "Kruisposten",
+      "parentId": "474057273346360405",
+      "accountType": "current_assets"
+    },
+    {
+      "id": "474235471599241003",
+      "name": "Moneybird NL73ADYB1000054185",
+      "parentId": "474057273347408983",
+      "accountType": "current_assets"
+    },
+    {
+      "id": "474057273375720556",
+      "name": "Nog te betalen kosten",
+      "parentId": "474057273347408986",
+      "accountType": "current_liabilities"
+    },
+    {
+      "id": "474057273375720557",
+      "name": "Nog te factureren omzet",
+      "parentId": "474057273347408984",
+      "accountType": "current_assets"
+    },
+    {
+      "id": "474057273347408992",
+      "name": "Omzet",
+      "parentId": null,
+      "accountType": "revenue"
+    },
+    {
+      "id": "474057273347408990",
+      "name": "Ongecategoriseerde inkomsten",
+      "parentId": null,
+      "accountType": "revenue"
+    },
+    {
+      "id": "474057273347408989",
+      "name": "Ongecategoriseerde uitgaven",
+      "parentId": null,
+      "accountType": "expenses"
+    },
+    {
+      "id": "474166156406556158",
+      "name": "Online Betaalmethoden rekening",
+      "parentId": "474057273347408983",
+      "accountType": "current_assets"
+    },
+    {
+      "id": "474057273347408986",
+      "name": "Overige schulden",
+      "parentId": null,
+      "accountType": "current_liabilities"
+    },
+    {
+      "id": "474057273347408984",
+      "name": "Overige vorderingen",
+      "parentId": null,
+      "accountType": "current_assets"
+    },
+    {
+      "id": "474057273373623401",
+      "name": "Te betalen btw",
+      "parentId": "474057273347408988",
+      "accountType": "current_liabilities"
+    },
+    {
+      "id": "474057273373623399",
+      "name": "Te rubriceren betalingen",
+      "parentId": "474057273347408986",
+      "accountType": "current_liabilities"
+    },
+    {
+      "id": "474057273373623400",
+      "name": "Te rubriceren ontvangen betalingen",
+      "parentId": "474057273347408984",
+      "accountType": "current_assets"
+    },
+    {
+      "id": "474057273373623398",
+      "name": "Te rubriceren transacties",
+      "parentId": "474057273346360405",
+      "accountType": "current_assets"
+    },
+    {
+      "id": "474057273373623402",
+      "name": "Te vorderen btw",
+      "parentId": "474057273347408988",
+      "accountType": "current_liabilities"
+    },
+    {
+      "id": "474057273347408987",
+      "name": "Verkoopkosten",
+      "parentId": null,
+      "accountType": "expenses"
+    },
+    {
+      "id": "474057273375720555",
+      "name": "Verrekeningen",
+      "parentId": "474057273346360405",
+      "accountType": "current_assets"
+    },
+    {
+      "id": "474057273347408993",
+      "name": "Vervoerskosten",
+      "parentId": null,
+      "accountType": "expenses"
+    },
+    {
+      "id": "474057273373623396",
+      "name": "Vooruitgefactureerde kosten",
+      "parentId": "474057273347408984",
+      "accountType": "current_assets"
+    },
+    {
+      "id": "474057273373623397",
+      "name": "Vooruitgefactureerde omzet",
+      "parentId": "474057273347408986",
+      "accountType": "current_liabilities"
+    }
+  ]
+}
