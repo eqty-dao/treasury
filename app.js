@@ -221,48 +221,45 @@ function aggregateSpentByGroup(paidMap, byId) {
   return totals;
 }
 
-function renderSpendTable({ title, totals, byId, currency }) {
+function renderSpendCard({ title, totals, byId, currency }) {
   const rows = [...totals.entries()]
     .map(([groupId, total]) => ({
       groupId,
       name: byId.get(groupId)?.name || `Ledger ${groupId}`,
       total,
     }))
-    .sort((a, b) => b.total - a.total);
+    .sort((a, b) => b.total - a.total)
+    .slice(0, 12);
 
-  const wrap = el("div");
-  wrap.appendChild(el("div", { class: "muted", style: "margin: 6px 0 8px;" }, [title]));
+  const grandTotal = [...totals.values()].reduce((acc, x) => acc + x, 0);
+
+  const card = el("div", { class: "monthly-card" }, [
+    el("div", { class: "monthly-header" }, [title]),
+  ]);
 
   if (rows.length === 0) {
-    wrap.appendChild(el("div", { class: "muted" }, ["No category data."]));
-    return wrap;
+    card.appendChild(el("div", { class: "muted" }, ["No category data."]));
+    return card;
   }
 
-  const table = el("table");
-  table.appendChild(el("thead", {}, [
-    el("tr", {}, [el("th", {}, ["Category"]), el("th", {}, ["Spent"])])
-  ]));
-
-  const tbody = el("tbody");
-  for (const r of rows.slice(0, 12)) {
-    tbody.appendChild(
-      el("tr", {}, [
-        el("td", {}, [r.name]),
-        el("td", {}, [`${fmtNumberString(String(r.total))} ${currency || ""}`]),
+  for (const r of rows) {
+    card.appendChild(
+      el("div", { class: "monthly-row" }, [
+        el("span", { class: "monthly-label" }, [r.name]),
+        el("span", { class: "monthly-value" }, [`${fmtNumberString(String(r.total))} ${currency || ""}`]),
       ])
     );
   }
-  table.appendChild(tbody);
-  wrap.appendChild(table);
 
-  const grandTotal = rows.reduce((acc, x) => acc + x.total, 0);
-  wrap.appendChild(
-    el("div", { class: "muted", style: "margin-top: 8px;" }, [
-      `Total: ${fmtNumberString(String(grandTotal))} ${currency || ""}`,
+  // Total row (same style)
+  card.appendChild(
+    el("div", { class: "monthly-row" }, [
+      el("span", { class: "monthly-label" }, ["Total:"]),
+      el("span", { class: "monthly-value" }, [`${fmtNumberString(String(grandTotal))} ${currency || ""}`]),
     ])
   );
 
-  return wrap;
+  return card;
 }
 
 function renderSpendByCategory({ bankMonthly, ledgerAccounts, currency }) {
@@ -283,6 +280,29 @@ function renderSpendByCategory({ bankMonthly, ledgerAccounts, currency }) {
       ytdTotals.set(groupId, (ytdTotals.get(groupId) || 0) + val);
     }
   }
+
+  const container = el("div", { class: "monthly-container" });
+
+  container.appendChild(
+    renderSpendCard({
+      title: `Latest month (${latest.month})`,
+      totals: latestTotals,
+      byId,
+      currency,
+    })
+  );
+
+  container.appendChild(
+    renderSpendCard({
+      title: "Year-to-date",
+      totals: ytdTotals,
+      byId,
+      currency,
+    })
+  );
+
+  return container;
+}
 
   const wrap = el("div");
   wrap.appendChild(
