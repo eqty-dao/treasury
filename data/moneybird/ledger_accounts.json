@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-01T16:49:06.336Z",
+  "generatedAt": "2026-02-01T17:43:25.937Z",
   "administrationId": "474057273126159366",
   "ledgerAccounts": [
     {
@@ -151,6 +151,12 @@
       "name": "Overige vorderingen",
       "parentId": null,
       "accountType": "current_assets"
+    },
+    {
+      "id": "477883993420727940",
+      "name": "Rente Moneybird Betaalrekening",
+      "parentId": null,
+      "accountType": "other_income_expenses"
     },
     {
       "id": "474057273373623401",
