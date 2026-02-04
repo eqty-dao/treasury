@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-04T11:02:33.188Z",
+  "generatedAt": "2026-02-04T11:48:40.748Z",
   "year": "2026",
   "financialAccountId": "474235471574075175",
   "months": [
@@ -23,7 +23,7 @@
     {
       "month": "2026-02",
       "period": "20260201..20260228",
-      "mutationCount": 1,
+      "mutationCount": 2,
       "openingBalance": "821",
       "closingBalance": "821.01",
       "cashReceivedTotal": "0.01",

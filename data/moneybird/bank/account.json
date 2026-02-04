@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-04T11:02:33.187Z",
+  "generatedAt": "2026-02-04T11:48:40.747Z",
   "administrationId": "474057273126159366",
   "year": "2026",
   "financialAccount": {
@@ -17,7 +17,7 @@
     "closingBalance": "821.01"
   },
   "totalsYtd": {
-    "mutationCount": 10,
+    "mutationCount": 11,
     "cashReceivedTotal": "928.79",
     "cashPaidTotal": "-132.72",
     "netCashFlow": "796.0699999999999"
