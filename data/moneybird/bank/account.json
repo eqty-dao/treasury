@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-11T09:08:21.644Z",
+  "generatedAt": "2026-02-11T10:11:30.949Z",
   "administrationId": "474057273126159366",
   "year": "2026",
   "financialAccount": {
@@ -18,8 +18,8 @@
   },
   "totalsYtd": {
     "mutationCount": 11,
-    "cashReceivedTotal": "928.79",
-    "cashPaidTotal": "-152.72",
+    "cashReceivedTotal": "NaN",
+    "cashPaidTotal": "NaN",
     "netCashFlow": "776.0699999999999"
   }
 }
