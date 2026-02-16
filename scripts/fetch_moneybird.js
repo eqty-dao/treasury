@@ -42,12 +42,21 @@ function monthPeriodYYYYMMDD(year, month) {
 }
 
 function sumLedgerMap(obj) {
-  // cash_flow returns objects like { "<ledger_id>": "100.0", ... }
+  // cash_flow returns objects like { "<ledger_id>": "100.0", "ledger_accounts": [...] }
   // Skip the 'ledger_accounts' array that Moneybird includes
   if (!obj || typeof obj !== "object") return 0;
-  return Object.entries(obj)
-    .filter(([key, val]) => key !== 'ledger_accounts' && typeof val === 'string')
-    .reduce((acc, [_, v]) => acc + Number(v || 0), 0);
+  
+  let total = 0;
+  for (const [key, val] of Object.entries(obj)) {
+    // Skip the ledger_accounts array
+    if (key === 'ledger_accounts') continue;
+    // Only sum numeric values
+    const num = Number(val);
+    if (Number.isFinite(num)) {
+      total += num;
+    }
+  }
+  return total;
 }
 
 async function moneybirdRequest({ token, method, url, body }) {

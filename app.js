@@ -209,15 +209,19 @@ function topGroupId(byId, id) {
 }
 
 function aggregateSpentByGroup(paidMap, byId) {
-  const totals = new Map(); // groupId -> number
-
+  const totals = new Map();
+  
   for (const [ledgerId, amountStr] of Object.entries(paidMap || {})) {
+    // Skip the ledger_accounts array
+    if (ledgerId === 'ledger_accounts') continue;
+    
     const groupId = topGroupId(byId, ledgerId);
     const n = Number(amountStr || 0);
-    const spent = Math.abs(n); // display as positive “spent”
+    if (!Number.isFinite(n)) continue; // Skip NaN/Infinity values
+    const spent = Math.abs(n);
     totals.set(groupId, (totals.get(groupId) || 0) + spent);
   }
-
+  
   return totals;
 }
 
