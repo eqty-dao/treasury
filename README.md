@@ -17,9 +17,9 @@ If Moneybird JSON is present under `data/moneybird/...`, the page shows two fina
 - Monthly opening/closing balances.
 - Cash received / cash paid totals.
 - Net cash flow.
-- Mutation counts (transaction count proxy). [file:5][file:1]
+- Mutation counts (transaction count proxy).
 
-If Moneybird JSON isn’t present, the UI degrades gracefully and shows “Moneybird data not available yet.” [file:5]
+If Moneybird JSON isn’t present, the UI degrades gracefully and shows “Moneybird data not available yet.”
 
 ## How it works
 
