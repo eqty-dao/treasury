@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-24T19:19:08.843Z",
+  "generatedAt": "2026-02-24T20:57:09.669Z",
   "year": "2026",
   "financialAccountId": "474235471574075175",
   "months": [
@@ -41,10 +41,10 @@
       "period": "20260201..20260228",
       "mutationCount": 4,
       "openingBalance": "821",
-      "closingBalance": "801.01",
+      "closingBalance": "784.02",
       "cashReceivedTotal": "0.01",
-      "cashPaidTotal": "-20",
-      "netCashFlow": "-19.99000000000001",
+      "cashPaidTotal": "-36.99",
+      "netCashFlow": "-36.98000000000002",
       "cashReceivedByLedgerAccount": {
         "477883993420727940": "0.01",
         "ledger_accounts": [
@@ -55,11 +55,11 @@
         ]
       },
       "cashPaidByLedgerAccount": {
-        "474057273373623398": "-20.0",
+        "474057273373623398": "-36.99",
         "ledger_accounts": [
           {
             "ledger_account_id": "474057273373623398",
-            "value": "-20.0"
+            "value": "-36.99"
           }
         ]
       }
