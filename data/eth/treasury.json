@@ -2,7 +2,7 @@
   "chain": "ethereum",
   "chainId": 1,
   "treasuryAddress": "0x2Bc456799F3Cf071B10CE7216269471e0A40381a",
-  "generatedAt": "2026-02-25T11:54:35.223Z",
+  "generatedAt": "2026-02-25T13:44:10.461Z",
   "native": {
     "symbol": "ETH",
     "decimals": 18,
