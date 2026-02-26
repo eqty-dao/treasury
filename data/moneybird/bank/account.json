@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-02-26T09:06:42.286Z",
+  "generatedAt": "2026-02-26T10:08:11.336Z",
   "administrationId": "474057273126159366",
   "year": "2026",
   "financialAccount": {
@@ -9,7 +9,7 @@
     "currency": "EUR",
     "provider": null,
     "active": true,
-    "updated_at": "2026-02-24T19:46:41.306Z"
+    "updated_at": "2026-02-26T09:35:44.164Z"
   },
   "current": {
     "month": "2026-02",
