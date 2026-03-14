@@ -210,18 +210,22 @@ function topGroupId(byId, id) {
 
 function aggregateSpentByGroup(paidMap, byId) {
   const totals = new Map();
-  
-  for (const [ledgerId, amountStr] of Object.entries(paidMap || {})) {
-    // Skip the ledger_accounts array
-    if (ledgerId === 'ledger_accounts') continue;
-    
+
+  // Moneybird returns { ledger_accounts: [{ ledger_account_id, value }, ...] }
+  const entries = paidMap?.ledger_accounts;
+  if (!Array.isArray(entries)) return totals;
+
+  for (const entry of entries) {
+    const ledgerId = String(entry.ledger_account_id || "");
+    if (!ledgerId) continue;
+
     const groupId = topGroupId(byId, ledgerId);
-    const n = Number(amountStr || 0);
-    if (!Number.isFinite(n)) continue; // Skip NaN/Infinity values
+    const n = Number(entry.value || 0);
+    if (!Number.isFinite(n)) continue;
     const spent = Math.abs(n);
     totals.set(groupId, (totals.get(groupId) || 0) + spent);
   }
-  
+
   return totals;
 }
 
