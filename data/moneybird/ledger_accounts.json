@@ -1,7 +1,13 @@
 {
-  "generatedAt": "2026-04-29T20:34:59.746Z",
+  "generatedAt": "2026-04-29T22:11:58.934Z",
   "administrationId": "474057273126159366",
   "ledgerAccounts": [
+    {
+      "id": "485782749798466882",
+      "name": "Afrondingsverschillen",
+      "parentId": "474057273347408985",
+      "accountType": "expenses"
+    },
     {
       "id": "475328521452913907",
       "name": "Afschrijving sinds aanschaf IT",
