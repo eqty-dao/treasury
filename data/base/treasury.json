@@ -2,7 +2,7 @@
   "chain": "base",
   "chainId": 8453,
   "treasuryAddress": "0x2Bc456799F3Cf071B10CE7216269471e0A40381a",
-  "generatedAt": "2026-05-01T11:33:25.230Z",
+  "generatedAt": "2026-05-01T13:55:01.730Z",
   "native": {
     "symbol": "ETH",
     "decimals": 18,
@@ -15,13 +15,23 @@
       "symbol": "EQTY",
       "contract": "0xc71f37d9bf4c5d1e7fe4bccb97e6f30b11b37d29",
       "decimals": 18,
-      "balanceRaw": "17520772000000000000000000",
-      "balanceFormatted": "17520772.0",
+      "balanceRaw": "16920772000000000000000000",
+      "balanceFormatted": "16920772.0",
       "explorerTokenUrl": "https://basescan.org/token/0xc71f37d9bf4c5d1e7fe4bccb97e6f30b11b37d29"
     }
   },
   "recentTransfers": {
     "EQTY": [
+      {
+        "hash": "0x9ea3567a7b32ffed97dd8eea83d4b3df83c053f5d7f0663195fa1f3e2735901a",
+        "timestamp": "2026-05-01T11:53:55.000Z",
+        "from": "0x2bc456799f3cf071b10ce7216269471e0a40381a",
+        "to": "0xce54fbc5738153ae19d8daa31792ab3b4afd90bf",
+        "direction": "out",
+        "amountRaw": "600000000000000000000000",
+        "amountFormatted": "600000.0",
+        "explorerTxUrl": "https://basescan.org/tx/0x9ea3567a7b32ffed97dd8eea83d4b3df83c053f5d7f0663195fa1f3e2735901a"
+      },
       {
         "hash": "0xd82aebcf943a76e26ab7ae4d00c545d7edf1a60e8a7a8c8592b8778b97cd1e9d",
         "timestamp": "2026-04-05T09:48:51.000Z",
