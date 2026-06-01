@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-05-31T23:31:34.598Z",
+  "generatedAt": "2026-06-01T05:17:01.807Z",
   "administrationId": "474057273126159366",
   "year": "2026",
   "financialAccount": {
@@ -12,7 +12,7 @@
     "updated_at": "2026-04-07T10:47:18.078Z"
   },
   "current": {
-    "month": "2026-05",
+    "month": "2026-06",
     "openingBalance": "772.75",
     "closingBalance": "772.75"
   },
