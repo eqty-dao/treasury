@@ -2,7 +2,7 @@
   "chain": "ethereum",
   "chainId": 1,
   "treasuryAddress": "0x2Bc456799F3Cf071B10CE7216269471e0A40381a",
-  "generatedAt": "2026-06-18T01:44:19.331Z",
+  "generatedAt": "2026-06-18T07:09:47.642Z",
   "native": {
     "symbol": "ETH",
     "decimals": 18,
@@ -22,6 +22,16 @@
   },
   "recentTransfers": {
     "USDT": [
+      {
+        "hash": "0xbd67132972cdece0f8e7770bafc6f1546b8bacaebec789dc5b7528ce90f65109",
+        "timestamp": "2026-06-18T02:27:23.000Z",
+        "from": "0x2bc456799f3cf071b10ce7216269471e0a40381a",
+        "to": "0x813f227336f99aabbec1ea47a77fffbe8066973e",
+        "direction": "out",
+        "amountRaw": "0",
+        "amountFormatted": "0.0",
+        "explorerTxUrl": "https://etherscan.io/tx/0xbd67132972cdece0f8e7770bafc6f1546b8bacaebec789dc5b7528ce90f65109"
+      },
       {
         "hash": "0x61c8110fef9aa37fd855ed34ccbe1de7e4ff5444231e3c7dd5822fce0eed227e",
         "timestamp": "2026-06-17T17:41:23.000Z",
