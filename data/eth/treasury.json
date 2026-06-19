@@ -2,7 +2,7 @@
   "chain": "ethereum",
   "chainId": 1,
   "treasuryAddress": "0x2Bc456799F3Cf071B10CE7216269471e0A40381a",
-  "generatedAt": "2026-06-19T16:14:54.066Z",
+  "generatedAt": "2026-06-19T18:10:17.920Z",
   "native": {
     "symbol": "ETH",
     "decimals": 18,
@@ -22,6 +22,56 @@
   },
   "recentTransfers": {
     "USDT": [
+      {
+        "hash": "0xbd67132972cdece0f8e7770bafc6f1546b8bacaebec789dc5b7528ce90f65109",
+        "timestamp": "2026-06-18T02:27:23.000Z",
+        "from": "0x2bc456799f3cf071b10ce7216269471e0a40381a",
+        "to": "0x813f227336f99aabbec1ea47a77fffbe8066973e",
+        "direction": "out",
+        "amountRaw": "0",
+        "amountFormatted": "0.0",
+        "explorerTxUrl": "https://etherscan.io/tx/0xbd67132972cdece0f8e7770bafc6f1546b8bacaebec789dc5b7528ce90f65109"
+      },
+      {
+        "hash": "0x61c8110fef9aa37fd855ed34ccbe1de7e4ff5444231e3c7dd5822fce0eed227e",
+        "timestamp": "2026-06-17T17:41:23.000Z",
+        "from": "0x813f7275c322b76de4d827316c54599aff48973e",
+        "to": "0x2bc456799f3cf071b10ce7216269471e0a40381a",
+        "direction": "in",
+        "amountRaw": "495",
+        "amountFormatted": "0.000495",
+        "explorerTxUrl": "https://etherscan.io/tx/0x61c8110fef9aa37fd855ed34ccbe1de7e4ff5444231e3c7dd5822fce0eed227e"
+      },
+      {
+        "hash": "0x5a91403c787b184cc61627550ea23504b34c817eece3fd3f43c9a0e55365c953",
+        "timestamp": "2026-06-17T17:40:47.000Z",
+        "from": "0x2bc456799f3cf071b10ce7216269471e0a40381a",
+        "to": "0x813f5edd317ed74e6397f37cb6c42c4950cc973e",
+        "direction": "out",
+        "amountRaw": "4950000000",
+        "amountFormatted": "4950.0",
+        "explorerTxUrl": "https://etherscan.io/tx/0x5a91403c787b184cc61627550ea23504b34c817eece3fd3f43c9a0e55365c953"
+      },
+      {
+        "hash": "0x0cd61c32c9521cca0ded8eb92a3f5cf1c619a490a8cc9b0fb855f8ff360449fe",
+        "timestamp": "2026-06-17T17:36:59.000Z",
+        "from": "0x813f7275c322b76de4d827316c54599aff48973e",
+        "to": "0x2bc456799f3cf071b10ce7216269471e0a40381a",
+        "direction": "in",
+        "amountRaw": "500",
+        "amountFormatted": "0.0005",
+        "explorerTxUrl": "https://etherscan.io/tx/0x0cd61c32c9521cca0ded8eb92a3f5cf1c619a490a8cc9b0fb855f8ff360449fe"
+      },
+      {
+        "hash": "0x69c6c7b060ba47ddebfafe5d7a57e66b30a487d010cc0607d04bd1092f3d35fe",
+        "timestamp": "2026-06-17T17:36:11.000Z",
+        "from": "0x2bc456799f3cf071b10ce7216269471e0a40381a",
+        "to": "0x813f5edd317ed74e6397f37cb6c42c4950cc973e",
+        "direction": "out",
+        "amountRaw": "50000000",
+        "amountFormatted": "50.0",
+        "explorerTxUrl": "https://etherscan.io/tx/0x69c6c7b060ba47ddebfafe5d7a57e66b30a487d010cc0607d04bd1092f3d35fe"
+      },
       {
         "hash": "0xb315bb8655d26c70571408a8515ee6b41f746bc3991b368699a39586dbb7bd4a",
         "timestamp": "2026-05-01T11:47:47.000Z",
