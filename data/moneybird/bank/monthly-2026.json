@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T09:42:45.402Z",
+  "generatedAt": "2026-10-28T16:39:01.975Z",
   "year": "2026",
   "financialAccountId": "474235471574075175",
   "months": [
@@ -15,7 +15,7 @@
       "cashReceivedByLedgerAccount": {
         "ledger_accounts": [
           {
-            "ledger_account_id": "474057273373623398",
+            "ledger_account_id": "502244437053671132",
             "value": "928.78"
           }
         ]
@@ -24,11 +24,15 @@
         "ledger_accounts": [
           {
             "ledger_account_id": "474057273345311827",
-            "value": "-82.25"
+            "value": "-124.79"
+          },
+          {
+            "ledger_account_id": "474057273347408985",
+            "value": "-0.01"
           },
           {
             "ledger_account_id": "474057273373623398",
-            "value": "-50.47"
+            "value": "-7.92"
           }
         ]
       }
@@ -53,8 +57,12 @@
       "cashPaidByLedgerAccount": {
         "ledger_accounts": [
           {
+            "ledger_account_id": "474057273345311827",
+            "value": "-16.99"
+          },
+          {
             "ledger_account_id": "474057273373623398",
-            "value": "-36.99"
+            "value": "-20.0"
           }
         ]
       }
@@ -71,7 +79,7 @@
       "cashReceivedByLedgerAccount": {
         "ledger_accounts": [
           {
-            "ledger_account_id": "474057273373623398",
+            "ledger_account_id": "474057273345311827",
             "value": "3.73"
           }
         ]

@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-28T09:42:43.234Z",
+  "generatedAt": "2026-10-28T16:38:59.868Z",
   "administrationId": "474057273126159366",
   "ledgerAccounts": [
     {
@@ -67,6 +67,12 @@
       "name": "Debiteuren",
       "parentId": null,
       "accountType": "current_assets"
+    },
+    {
+      "id": "502244437053671132",
+      "name": "Donaties en giften",
+      "parentId": null,
+      "accountType": "revenue"
     },
     {
       "id": "474057273347408983",
