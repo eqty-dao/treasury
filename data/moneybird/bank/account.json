@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-11-01T15:12:44.626Z",
+  "generatedAt": "2026-11-01T19:42:44.366Z",
   "administrationId": "474057273126159366",
   "year": "2026",
   "financialAccount": {
@@ -9,17 +9,17 @@
     "currency": "EUR",
     "provider": null,
     "active": true,
-    "updated_at": "2026-10-28T16:13:08.182Z"
+    "updated_at": "2026-11-01T17:15:14.610Z"
   },
   "current": {
     "month": "2026-11",
     "openingBalance": "639.43",
-    "closingBalance": "639.43"
+    "closingBalance": "639.74"
   },
   "totalsYtd": {
-    "mutationCount": 26,
+    "mutationCount": 27,
     "cashReceivedTotal": "0",
     "cashPaidTotal": "0",
-    "netCashFlow": "614.4899999999999"
+    "netCashFlow": "614.8"
   }
 }
