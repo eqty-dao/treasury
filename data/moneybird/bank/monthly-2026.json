@@ -1,5 +1,5 @@
 {
-  "generatedAt": "2026-10-31T21:37:56.914Z",
+  "generatedAt": "2026-11-01T01:12:53.494Z",
   "year": "2026",
   "financialAccountId": "474235471574075175",
   "months": [
@@ -248,6 +248,22 @@
             "value": "-19.36"
           }
         ]
+      }
+    },
+    {
+      "month": "2026-11",
+      "period": "20261101..20261130",
+      "mutationCount": 0,
+      "openingBalance": "639.43",
+      "closingBalance": "639.43",
+      "cashReceivedTotal": "0",
+      "cashPaidTotal": "0",
+      "netCashFlow": "0",
+      "cashReceivedByLedgerAccount": {
+        "ledger_accounts": []
+      },
+      "cashPaidByLedgerAccount": {
+        "ledger_accounts": []
       }
     }
   ]
